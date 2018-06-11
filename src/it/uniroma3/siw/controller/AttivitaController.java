@@ -3,6 +3,8 @@ package it.uniroma3.siw.controller;
 import java.io.IOException;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -43,6 +45,12 @@ public class AttivitaController extends HttpServlet {
 			attivita.setNome(nome);
 			attivita.setData(data);
 			attivita.setOrario(orario);
+			
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("azienda-unit");
+			EntityManager em = emf.createEntityManager();
+			
+			AttivitaJpaRepository repoAtt = new AttivitaJpaRepository(em);
+			repoAtt.save(attivita);
 			
 			session.setAttribute("attivita", attivita);
 			request.setAttribute("successAttivita", "Attività inserita con successo!");
