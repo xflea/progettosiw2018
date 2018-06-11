@@ -1,6 +1,5 @@
 package it.uniroma3.siw.model;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -32,7 +31,7 @@ public class Allievo {
 	private Long telefono;
 	
 	@Temporal(TemporalType.DATE)
-	private Date dataDiNascita;
+	private String dataDiNascita;
 	
 	@Column(nullable = false)
 	private String luogoDiNascita;
@@ -80,11 +79,11 @@ public class Allievo {
 		this.telefono = telefono;
 	}
 
-	public Date getDataDiNascita() {
+	public String getDataDiNascita() {
 		return dataDiNascita;
 	}
 
-	public void setDataDiNascita(Date dataDiNascita) {
+	public void setDataDiNascita(String dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
 

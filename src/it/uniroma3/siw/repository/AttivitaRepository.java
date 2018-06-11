@@ -8,7 +8,7 @@ public interface AttivitaRepository {
 	public Attività save(Attività attivita);
 	public Attività findByNome(String nome);
 	public List<Attività> findAll();
-	public void update(Attività customer);
-	public void delete(Attività customer);
+	public void update(Attività attivita);
+	public void delete(Attività attivita);
 
 }
