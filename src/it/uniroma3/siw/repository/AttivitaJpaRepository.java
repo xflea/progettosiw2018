@@ -18,11 +18,11 @@ public class AttivitaJpaRepository implements AttivitaRepository{
 	// se esiste torna i dati, se non esiste faccio la persist
 	@Override
 	public Attività save(Attività attivita) {		
-		if (attivita.getNome() == null) {
+		if (attivita.getId() == null) {
 			em.persist(attivita);
 		}
 		else {
-			Attività controllo = findByNome(attivita.getNome());
+			Attività controllo = findByPrimaryKey(attivita.getId());
 			if (controllo == null) {
 				em.persist(attivita);
 			}
@@ -34,8 +34,8 @@ public class AttivitaJpaRepository implements AttivitaRepository{
 	}
 
 	@Override
-	public Attività findByNome(String nome) {
-		return em.find(Attività.class, nome);
+	public Attività findByPrimaryKey(Long id) {
+		return em.find(Attività.class, id);
 	}
 
 	@Override

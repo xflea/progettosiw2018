@@ -22,7 +22,6 @@ public class Attività {
 	@Column(nullable = false)
 	private String nome;
 	
-	@Temporal(TemporalType.DATE)
 	private String data;
 	
 	@Column(nullable = false)
