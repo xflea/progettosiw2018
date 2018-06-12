@@ -99,8 +99,8 @@ public class Allievo {
 		return attività;
 	}
 
-	public void setAttività(List<Attività> attività) {
-		this.attività = attività;
+	public void addAttività(Attività attività) {
+		this.attività.add(attività);
 	}
 
 }

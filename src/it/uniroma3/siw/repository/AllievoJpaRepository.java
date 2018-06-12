@@ -22,7 +22,7 @@ public class AllievoJpaRepository implements AllievoRepository{
 			em.persist(allievo);
 		}
 		else {
-			Allievo controllo = findByNome(allievo.getNome());
+			Allievo controllo = findByEmail(allievo.getEmail());
 			if (controllo == null) {
 				em.persist(allievo);
 			}
@@ -34,8 +34,8 @@ public class AllievoJpaRepository implements AllievoRepository{
 	}
 
 	@Override
-	public Allievo findByNome(String nome) {
-		return em.find(Allievo.class, nome);
+	public Allievo findByEmail(String email) {
+		return em.find(Allievo.class, email);
 	}
 
 	@Override

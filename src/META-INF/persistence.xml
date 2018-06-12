@@ -58,10 +58,10 @@
 				value="postgres" />
 
 			<property name="javax.persistence.jdbc.password"
-				value="tr675ad6" />
+				value="postgres" />
 
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:postgresql://localhost/progetto-siw" />
+				value="jdbc:postgresql://localhost/progetto-siw-test" />
 
 			<!-- Hibernate properties -->
 
