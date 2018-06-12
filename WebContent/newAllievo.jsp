@@ -17,7 +17,7 @@
 		<div><font color="red">${ errEmail }</font></div>
 		<div>Telefono: <input type="text" name="telefono" value="${telefono}"/></div>
 		<div><font color="red">${ errTelefono }</font></div>
-		<div>Data di nascita: <input type="text" name="data di nascita" value="${dataDiNascita}"/></div>
+		<div>Data di nascita: <input type="date" name="data di nascita" value="${dataDiNascita}"/></div>
 		<div><font color="red">${ errDataDiNascita }</font></div>
 		<div>Luogo di nascita: <input type="text" name="luogo di nascita" value="${luogoDiNascita}"/></div>
 		<div><font color="red">${ errLuogoDiNascita }</font></div>
