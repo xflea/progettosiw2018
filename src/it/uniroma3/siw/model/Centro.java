@@ -22,13 +22,14 @@ public class Centro {
 	@Column(nullable = false)
 	private String indirizzo;
 	
+	@Column(nullable = false)
 	private String email;
 	
 	@Column(nullable = false)
-	private Long telefono;
+	private String telefono;
 	
 	@Column(nullable = false)
-	private Long capienza;
+	private int capienza;
 	
 	@OneToMany(mappedBy = "centro")
 	private List<Attività> attività;	
@@ -65,19 +66,19 @@ public class Centro {
 		this.email = email;
 	}
 
-	public Long getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(Long telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
-	public Long getCapienza() {
+	public int getCapienza() {
 		return capienza;
 	}
 
-	public void setCapienza(Long capienza) {
+	public void setCapienza(int capienza) {
 		this.capienza = capienza;
 	}
 

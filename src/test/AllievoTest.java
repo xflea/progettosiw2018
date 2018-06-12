@@ -20,10 +20,10 @@ class AllievoTest {
 	@Test
 	void emailIsValidTest() {
 		
-		assertTrue(validator.emailIsValid("prova@test.example"));
-		assertFalse(validator.emailIsValid("prova@test"));
-		assertFalse(validator.emailIsValid("prova.example"));
-		assertFalse(validator.emailIsValid(""));
+		assertTrue(validator.emailIisValid("prova@test.example"));
+		assertFalse(validator.emailIisValid("prova@test"));
+		assertFalse(validator.emailIisValid("prova.example"));
+		assertFalse(validator.emailIisValid(""));
 		
 	}
 	

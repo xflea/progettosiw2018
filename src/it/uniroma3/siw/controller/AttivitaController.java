@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.persistence.EntityManager;
 
 import it.uniroma3.siw.model.Attività;
 import it.uniroma3.siw.repository.AttivitaJpaRepository;

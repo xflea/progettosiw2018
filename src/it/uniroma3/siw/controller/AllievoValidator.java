@@ -1,6 +1,9 @@
 package it.uniroma3.siw.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
+import java.util.regex.Pattern;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,7 +24,7 @@ public class AllievoValidator {
 			request.setAttribute("errTelefono", "Il telefono deve essere un numero");
 		}
 		
-		if (!emailIsValid(email)) {
+		if (!emailIisValid(email)) {
 			request.setAttribute("errEmail", "Email non valida");
 		}
 		
@@ -58,22 +61,17 @@ public class AllievoValidator {
 		
 	}
 	
-	public boolean emailIsValid(String email) {
-		boolean valid = false;
-		int i;
-		int j;
-		
-		for(i = 0; i < email.length(); i++) {
-			if (email.charAt(i) == '@') {
-				for(j = i; j < email.length(); j++) {
-					if(email.charAt(j) == '.')
-						valid = true;
-				}
-			}
-		}
-		
-		return valid;
-	}
+	public static boolean emailIisValid(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                            "[a-zA-Z0-9_+&*-]+)*@" +
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                            "A-Z]{2,7}$";
+                             
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
 	
 	public boolean emailAlreadyExists(String email, boolean test) {
 		

@@ -9,15 +9,15 @@ public class AttivitaValidator {
 		boolean errori = false;
 		
 		if (nome == null || nome.equals("")) {
-			request.setAttribute("errNome", "Il nome è obbligatorio.");
+			request.setAttribute("errNomeAttivita", "Il nome è obbligatorio.");
 			errori = true;
 		}
 		else if (data == null || data.equals("")) {
-			request.setAttribute("errData", "La data è obbligatoria.");
+			request.setAttribute("errDataAttivita", "La data è obbligatoria.");
 			errori = true;
 		}
 		else if (orario == null || orario.equals("")) {
-			request.setAttribute("errOrario", "L'orario è obbligatorio.");
+			request.setAttribute("errOrarioAttivita", "L'orario è obbligatorio.");
 			errori = true;
 		}
 		

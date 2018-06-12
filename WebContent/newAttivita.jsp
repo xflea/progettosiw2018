@@ -10,11 +10,11 @@
 
 	<form action="richiestaAttivita" method="post">
 		<div>Nome: <input type="text" name="nome" value="${nome}"/></div>
-		<div><font color="red">${ errNome }</font></div>
+		<div><font color="red">${ errNomeAttivita }</font></div>
 		<div>Data <input type="date" name="data" value="${data}"/></div>
-		<div><font color="red">${ errData }</font></div>
+		<div><font color="red">${ errDataAttivita }</font></div>
 		<div>Orario <input type="number" name="orario" min ="1" max="24" value="${orario}"/></div>
-		<div><font color="red">${ errOrario }</font></div>
+		<div><font color="red">${ errOrarioAttivita }</font></div>
 		<div><font color="green">${ successAttivita}</font></div>
 		<div><input type="submit" name="sumbit" value="Invia" /></div>
 	</form>
