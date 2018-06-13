@@ -20,7 +20,7 @@
 			String nome = allievi.get(i).getNome();
 			String cognome = allievi.get(i).getCognome();
 			String email = allievi.get(i).getEmail();
-			Long telefono = allievi.get(i).getTelefono();
+			String telefono = allievi.get(i).getTelefono();
 			String dataDiNascita = allievi.get(i).getDataDiNascita();
 			String luogoDiNascita = allievi.get(i).getLuogoDiNascita();
 		%>

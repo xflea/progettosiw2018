@@ -21,39 +21,39 @@ public class AllievoValidator {
 			Long.parseLong(telefono);
 		}
 		catch(NumberFormatException exception) {
-			request.setAttribute("errTelefono", "Il telefono deve essere un numero");
+			request.setAttribute("errTelefonoAllievo", "Il telefono deve essere un numero");
 		}
 		
 		if (!emailIisValid(email)) {
-			request.setAttribute("errEmail", "Email non valida");
+			request.setAttribute("errEmailAllievo", "Email non valida");
 		}
 		
 		if(emailAlreadyExists(email, false)) {
-			request.setAttribute("errEmail", "L'email fornita è già stata assegnata ad un allievo");
+			request.setAttribute("errEmailAllievo", "L'email fornita è già stata assegnata ad un allievo");
 		}
 		
 		if (nome == null || nome.equals("")) {
-			request.setAttribute("errNome", "Il nome è obbligatorio.");
+			request.setAttribute("errNomeAllievo", "Il nome è obbligatorio.");
 			errori = true;
 		}
 		else if (cognome == null || cognome.equals("")) {
-			request.setAttribute("errCognome", "Il cognome è obbligattorio");
+			request.setAttribute("errCognomeAllievo", "Il cognome è obbligattorio");
 			errori = true;
 		}
 		else if (email == null || email.equals("")) {
-			request.setAttribute("errEmail", "L'email è obbligatoria.");
+			request.setAttribute("errEmailAllievo", "L'email è obbligatoria.");
 			errori = true;
 		}
 		else if (telefono == null || telefono.equals("")) {
-			request.setAttribute("errTelefono", "Il telefono è obbligatorio.");
+			request.setAttribute("errTelefonoAllievo", "Il telefono è obbligatorio.");
 			errori = true;
 		}
 		else if (dataDiNascita == null || dataDiNascita.equals("")) {
-			request.setAttribute("errDataDiNascita", "La data di nascita è obbligatoria.");
+			request.setAttribute("errDataDiNascitaAllievo", "La data di nascita è obbligatoria.");
 			errori = true;
 		}
 		else if (luogoDiNascita == null || luogoDiNascita.equals("")) {
-			request.setAttribute("errLuogoDiNascita", "Il luogo di Nascita è obbligatorio.");
+			request.setAttribute("errLuogoDiNascitaAllievo", "Il luogo di Nascita è obbligatorio.");
 			errori = true;
 		}
 		

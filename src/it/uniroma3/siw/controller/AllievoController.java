@@ -29,14 +29,19 @@ public class AllievoController extends HttpServlet {
 		
 		AllievoValidator validator = new AllievoValidator();
 		
-		String nome = request.getParameter("nome").toUpperCase().trim();
-		String cognome = request.getParameter("cognome").toUpperCase().trim();
-		String email = request.getParameter("email").trim();
-		String telefono = request.getParameter("telefono").trim();
-		String dataDiNascita = request.getParameter("dataDiNascita").trim();
-		String luogoDiNascita = request.getParameter("luogoDiNascita").toUpperCase().trim();
+		String nome = request.getParameter("nomeAllievo").toUpperCase().trim();
+		String cognome = request.getParameter("cognomeAllievo").toUpperCase().trim();
+		String email = request.getParameter("emailAllievo").trim();
+		String telefono = request.getParameter("telefonoAllievo").trim();
+		String dataDiNascita = request.getParameter("dataAllievo").trim();
+		String luogoDiNascita = request.getParameter("luogoAllievo").toUpperCase().trim();
 		
-		session.setAttribute("nome", nome);
+		session.setAttribute("nomeAllievo", nome);
+		session.setAttribute("cognomeAllievo", cognome);
+		session.setAttribute("emailAllievo", email);
+		session.setAttribute("telefonoAllievo", telefono);
+		session.setAttribute("dataAllievo", dataDiNascita);
+		session.setAttribute("luogoAllievo", luogoDiNascita);
 
 		if(!validator.validate(request, nome, cognome, email, telefono, dataDiNascita, luogoDiNascita)) {
 			
@@ -44,7 +49,7 @@ public class AllievoController extends HttpServlet {
 			allievo.setNome(nome);
 			allievo.setCognome(cognome);
 			allievo.setEmail(email);
-			allievo.setTelefono(new Long(telefono));
+			allievo.setTelefono(telefono);
 			allievo.setDataDiNascita(dataDiNascita);
 			allievo.setLuogoDiNascita(luogoDiNascita);
 			

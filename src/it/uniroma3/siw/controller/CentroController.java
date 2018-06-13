@@ -30,17 +30,17 @@ public class CentroController extends HttpServlet {
 		
 		CentroValidator validator = new CentroValidator();
 		
-		String nome = request.getParameter("nome").toUpperCase().trim();
-		String indirizzo = request.getParameter("indirizzo").toUpperCase().trim();
-		String email = request.getParameter("email").toUpperCase().trim();
-		String telefono = request.getParameter(("telefono")).trim();
-		String capienza = request.getParameter(("capienza")).trim();
+		String nome = request.getParameter("nomeCentro").toUpperCase().trim();
+		String indirizzo = request.getParameter("indirizzoCentro").toUpperCase().trim();
+		String email = request.getParameter("emailCentro").toUpperCase().trim();
+		String telefono = request.getParameter("telefonoCentro").trim();
+		String capienza = request.getParameter("capienzaCentro").trim();
 		
-		session.setAttribute("nome", nome);
-		session.setAttribute("indirizzo", indirizzo);
-		session.setAttribute("email", email);
-		session.setAttribute("telefono", telefono);
-		session.setAttribute("capienza", capienza);
+		session.setAttribute("nomeCentro", nome);
+		session.setAttribute("indirizzoCentro", indirizzo);
+		session.setAttribute("emailCentro", email);
+		session.setAttribute("telefonoCentro", telefono);
+		session.setAttribute("capienzaCentro", capienza);
 		
 		if(!validator.validate(request, nome, indirizzo, email, telefono, capienza)) {
 			

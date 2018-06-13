@@ -8,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Allievo {
@@ -28,9 +26,8 @@ public class Allievo {
 	private String email;
 	
 	@Column(nullable = false)
-	private Long telefono;
+	private String telefono;
 	
-	@Temporal(TemporalType.DATE)
 	private String dataDiNascita;
 	
 	@Column(nullable = false)
@@ -71,11 +68,11 @@ public class Allievo {
 		this.email = email;
 	}
 
-	public Long getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(Long telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

@@ -9,18 +9,18 @@
 <body>
 
 	<form action="richiestaAllievo" method="post">
-		<div>Nome: <input type="text" name="nome" value="${nome}"/></div>
-		<div><font color="red">${ errNome }</font></div>
-		<div>Cognome: <input type="text" name="cognome" value="${cognome}"/></div>
-		<div><font color="red">${ errCognome }</font></div>
-		<div>Email: <input type="text" name="email" value="${email}"/></div>
-		<div><font color="red">${ errEmail }</font></div>
-		<div>Telefono: <input type="text" name="telefono" value="${telefono}"/></div>
-		<div><font color="red">${ errTelefono }</font></div>
-		<div>Data di nascita: <input type="date" name="data di nascita" value="${dataDiNascita}"/></div>
-		<div><font color="red">${ errDataDiNascita }</font></div>
-		<div>Luogo di nascita: <input type="text" name="luogo di nascita" value="${luogoDiNascita}"/></div>
-		<div><font color="red">${ errLuogoDiNascita }</font></div>
+		<div>Nome: <input type="text" name="nomeAllievo" value="${nomeAllievo}"/></div>
+		<div><font color="red">${ errNomeAllievo }</font></div>
+		<div>Cognome: <input type="text" name="cognomeAllievo" value="${cognomeAllievo}"/></div>
+		<div><font color="red">${ errCognomeAllievo }</font></div>
+		<div>Email: <input type="text" name="emailAllievo" value="${emailAllievo}"/></div>
+		<div><font color="red">${ errEmailAllievo }</font></div>
+		<div>Telefono: <input type="text" name="telefonoAllievo" value="${telefonoAllievo}"/></div>
+		<div><font color="red">${ errTelefonoAllievo }</font></div>
+		<div>Data di nascita: <input type="date" name="dataAllievo" value="${dataDiNascitaAllievo}"/></div>
+		<div><font color="red">${ errDataDiNascitaAllievo }</font></div>
+		<div>Luogo di nascita: <input type="text" name="luogoAllievo" value="${luogoDiNascitaAllievo}"/></div>
+		<div><font color="red">${ errLuogoDiNascitaAllievo }</font></div>
 		<div><font color="green">${ successAllievo }</font></div>
 		<div><input type="submit" name="sumbit" value="Invia" /></div>
 	</form>

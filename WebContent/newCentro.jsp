@@ -9,15 +9,15 @@
 <body>
 
 	<form action="richiestaCentro" method="post">
-		<div>Nome: <input type="text" name="nome" value="${nome}"/></div>
+		<div>Nome: <input type="text" name="nomeCentro" value="${nomeCentro}"/></div>
 		<div><font color="red">${ errNomeCentro }</font></div>
-		<div>Indirizzo: <input type="text" name="indirizzo" value="${indirizzo}"/></div>
+		<div>Indirizzo: <input type="text" name="indirizzoCentro" value="${indirizzoCentro}"/></div>
 		<div><font color="red">${ errIndirizzoCentro }</font></div>
-		<div>Email: <input type="text" name="email" value="${email}"/></div>
+		<div>Email: <input type="text" name="emailCentro" value="${emailCentro}"/></div>
 		<div><font color="red">${ errEmailCentro }</font></div>
-		<div>Telefono: <input type="text" name="telefono" value="${telefono}"/></div>
+		<div>Telefono: <input type="text" name="telefonoCentro" value="${telefonoCentro}"/></div>
 		<div><font color="red">${ errTelefonoCentro }</font></div>
-		<div>Capienza: <input type="text" name="capienza" value="${capienza}"/></div>
+		<div>Capienza: <input type="text" name="capienzaCentro" value="${capienzaCentro}"/></div>
 		<div><font color="red">${ errCapienzaCentro }</font></div>
 		<div><font color="green">${ successCentro}</font></div>
 		<div><input type="submit" name="sumbit" value="Invia" /></div>

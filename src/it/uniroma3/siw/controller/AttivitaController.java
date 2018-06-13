@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -46,14 +47,18 @@ public class AttivitaController extends HttpServlet {
 			
 			EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
 			EntityManager em = emf.createEntityManager();
+			
+			EntityTransaction tx = em.getTransaction();
+			tx.begin();
 			AttivitaJpaRepository repoAtt = new AttivitaJpaRepository(em);
 			repoAtt.save(attivita);
+			tx.commit();
+			em.close();
+			emf.close();
 			
 			session.setAttribute("attivita", attivita);
 			request.setAttribute("successAttivita", "Attività inserita con successo!");
-			
-			em.close();
-			
+						
 		}
 		
 		nextPage = "/newAttivita.jsp";
