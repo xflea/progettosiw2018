@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.uniroma3.siw.model.Attività;
-import it.uniroma3.siw.repository.AttivitaJpaRepository;
+import it.uniroma3.siw.service.AttivitaJpaRepository;
 
 @WebServlet("/listaAttivita")
 public class ListaAttivitaController extends HttpServlet {

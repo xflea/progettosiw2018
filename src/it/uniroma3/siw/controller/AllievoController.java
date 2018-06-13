@@ -2,6 +2,8 @@ package it.uniroma3.siw.controller;
 
 import java.io.IOException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.uniroma3.siw.model.Allievo;
+import it.uniroma3.siw.service.AllievoJpaRepository;
 
 @WebServlet("/richiestaAllievo")
 public class AllievoController extends HttpServlet {
@@ -44,6 +47,11 @@ public class AllievoController extends HttpServlet {
 			allievo.setTelefono(new Long(telefono));
 			allievo.setDataDiNascita(dataDiNascita);
 			allievo.setLuogoDiNascita(luogoDiNascita);
+			
+			EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
+			EntityManager em = emf.createEntityManager();
+			AllievoJpaRepository repoAll = new AllievoJpaRepository(em);
+			repoAll.save(allievo);
 			
 			session.setAttribute("allievo", allievo);
 			request.setAttribute("successAllievo", "Allievo inserito con successo!");

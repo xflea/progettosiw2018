@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="richiestaAttivita" method="post">
+	<form action="richiestaAllievo" method="post">
 		<div>Nome: <input type="text" name="nome" value="${nome}"/></div>
 		<div><font color="red">${ errNome }</font></div>
 		<div>Cognome: <input type="text" name="cognome" value="${cognome}"/></div>

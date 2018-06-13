@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.uniroma3.siw.model.Centro;
-import it.uniroma3.siw.repository.CentroJpaRepository;
+import it.uniroma3.siw.service.CentroJpaRepository;
 
 @WebServlet("/richiestaCentro")
 public class CentroController extends HttpServlet {

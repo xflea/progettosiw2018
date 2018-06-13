@@ -9,7 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import it.uniroma3.siw.model.Allievo;
-import it.uniroma3.siw.repository.AllievoJpaRepository;
+import it.uniroma3.siw.service.AllievoJpaRepository;
 
 public class AllievoValidator {
 	
@@ -61,7 +61,7 @@ public class AllievoValidator {
 		
 	}
 	
-	public static boolean emailIisValid(String email) {
+	public boolean emailIisValid(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
                             "[a-zA-Z0-9_+&*-]+)*@" +
                             "(?:[a-zA-Z0-9-]+\\.)+[a-z" +

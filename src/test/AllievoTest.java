@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 import org.junit.jupiter.api.Test;
 
 import it.uniroma3.siw.model.Allievo;
-import it.uniroma3.siw.repository.AllievoJpaRepository;
+import it.uniroma3.siw.service.AllievoJpaRepository;
 
 import it.uniroma3.siw.controller.AllievoValidator;;
 

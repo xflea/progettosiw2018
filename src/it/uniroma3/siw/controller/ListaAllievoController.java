@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.uniroma3.siw.model.Allievo;
-import it.uniroma3.siw.repository.AllievoJpaRepository;
+import it.uniroma3.siw.service.AllievoJpaRepository;
 
 @WebServlet("/listaAllievi")
 public class ListaAllievoController extends HttpServlet {

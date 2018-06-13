@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.uniroma3.siw.model.Attività;
-import it.uniroma3.siw.repository.AttivitaJpaRepository;
+import it.uniroma3.siw.service.AttivitaJpaRepository;
 
 @WebServlet("/richiestaAttivita")
 public class AttivitaController extends HttpServlet {
@@ -52,6 +51,8 @@ public class AttivitaController extends HttpServlet {
 			
 			session.setAttribute("attivita", attivita);
 			request.setAttribute("successAttivita", "Attività inserita con successo!");
+			
+			em.close();
 			
 		}
 		
