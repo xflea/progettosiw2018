@@ -15,7 +15,6 @@ public class AttivitaJpaRepository implements AttivitaRepository{
 		this.em = em;
 	}
 
-	// se esiste torna i dati, se non esiste faccio la persist
 	@Override
 	public Attività save(Attività attivita) {		
 		if (attivita.getId() == null) {

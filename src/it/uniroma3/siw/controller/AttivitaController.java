@@ -45,9 +45,8 @@ public class AttivitaController extends HttpServlet {
 			attivita.setData(data);
 			attivita.setOrario(orario);
 			
-			EntityManagerFactory emf = Persistence.createEntityManagerFactory("azienda-unit");
+			EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
 			EntityManager em = emf.createEntityManager();
-			
 			AttivitaJpaRepository repoAtt = new AttivitaJpaRepository(em);
 			repoAtt.save(attivita);
 			
