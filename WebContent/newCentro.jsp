@@ -8,6 +8,14 @@
 </head>
 <body>
 
+	<%
+		
+	if (session.getAttribute("username") == null) {
+		response.sendRedirect("login.jsp");
+	}		
+	
+	%>
+
 	<form action="richiestaCentro" method="post">
 		<div>Nome: <input type="text" name="nomeCentro" value="${nomeCentro}"/></div>
 		<div><font color="red">${ errNomeCentro }</font></div>

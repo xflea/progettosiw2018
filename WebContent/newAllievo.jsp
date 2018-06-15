@@ -8,6 +8,14 @@
 </head>
 <body>
 
+	<%
+		
+	if (session.getAttribute("username") == null) {
+		response.sendRedirect("login.jsp");
+	}		
+	
+	%>
+
 	<form action="richiestaAllievo" method="post">
 		<div>Nome: <input type="text" name="nomeAllievo" value="${nomeAllievo}"/></div>
 		<div><font color="red">${ errNomeAllievo }</font></div>
@@ -22,7 +30,7 @@
 		<div>Luogo di nascita: <input type="text" name="luogoAllievo" value="${luogoDiNascitaAllievo}"/></div>
 		<div><font color="red">${ errLuogoDiNascitaAllievo }</font></div>
 		<div><font color="green">${ successAllievo }</font></div>
-		<div><input type="submit" name="sumbit" value="Invia" /></div>
+		<div><input type="submit" name="submit" value="Invia" /></div>
 	</form>
 
 </body>

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -45,7 +46,7 @@ public class AttivitaController extends HttpServlet {
 			attivita.setData(data);
 			attivita.setOrario(orario);
 			
-			EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("azienda-unit");
 			EntityManager em = emf.createEntityManager();
 			
 			EntityTransaction tx = em.getTransaction();
