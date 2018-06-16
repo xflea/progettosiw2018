@@ -2,6 +2,9 @@ package it.uniroma3.siw.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
@@ -18,7 +21,7 @@ public class AllievoValidator {
 		boolean errori = false;
 		
 		try {
-			Long.parseLong(telefono);
+			new Integer(telefono);
 		}
 		catch(NumberFormatException exception) {
 			request.setAttribute("errTelefonoAllievo", "Il telefono deve essere un numero");
@@ -56,6 +59,20 @@ public class AllievoValidator {
 			request.setAttribute("errLuogoDiNascitaAllievo", "Il luogo di Nascita è obbligatorio.");
 			errori = true;
 		}
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");
+		Date data_convertita = null;
+		try {
+			data_convertita = formatter.parse(dataDiNascita);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		Date oggi = new Date();
+		if(data_convertita.after(oggi)) {
+			request.setAttribute("errDataDiNascitaAllievo", "Data non valida.");
+			errori = true;
+		}	
 		
 		return errori;
 		

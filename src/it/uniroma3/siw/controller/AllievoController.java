@@ -1,6 +1,9 @@
 package it.uniroma3.siw.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -49,8 +52,15 @@ public class AllievoController extends HttpServlet {
 			allievo.setNome(nome);
 			allievo.setCognome(cognome);
 			allievo.setEmail(email);
-			allievo.setTelefono(telefono);
-			allievo.setDataDiNascita(dataDiNascita);
+			allievo.setTelefono(new Integer(telefono));
+			SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");
+			Date date2;
+			try {
+				date2 = formatter.parse(dataDiNascita);
+				allievo.setDataDiNascita(date2);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}			
 			allievo.setLuogoDiNascita(luogoDiNascita);
 			
 			EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");

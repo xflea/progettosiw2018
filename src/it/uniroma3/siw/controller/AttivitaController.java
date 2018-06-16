@@ -1,6 +1,9 @@
 package it.uniroma3.siw.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,8 +46,15 @@ public class AttivitaController extends HttpServlet {
 			
 			Attività attivita = new Attività();
 			attivita.setNome(nome);
-			attivita.setData(data);
-			attivita.setOrario(orario);
+			SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");
+			Date date2;
+			try {
+				date2 = formatter.parse(data);
+				attivita.setData(date2);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}			
+			attivita.setOrario(new Integer(orario));
 			
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("azienda-unit");
 			EntityManager em = emf.createEntityManager();

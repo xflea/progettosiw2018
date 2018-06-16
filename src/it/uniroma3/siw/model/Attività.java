@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Attività {
@@ -20,10 +23,11 @@ public class Attività {
 	@Column(nullable = false)
 	private String nome;
 	
-	private String data;
+	@Temporal (TemporalType.DATE)
+	private Date data;
 	
 	@Column(nullable = false)
-	private String orario;
+	private int orario;
 	
 	@ManyToMany(mappedBy = "attività")
 	private List<Allievo> allievo;
@@ -47,20 +51,21 @@ public class Attività {
 		this.nome = nome;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
-	public String getOrario() {
+	public int getOrario() {
 		return orario;
 	}
 
-	public void setOrario(String orario) {
+	public void setOrario(int orario) {
 		this.orario = orario;
 	}
+
 
 }

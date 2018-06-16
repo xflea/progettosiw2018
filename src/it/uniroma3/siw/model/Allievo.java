@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Allievo {
@@ -26,9 +29,10 @@ public class Allievo {
 	private String email;
 	
 	@Column(nullable = false)
-	private String telefono;
+	private int telefono;
 	
-	private String dataDiNascita;
+	@Temporal (TemporalType.DATE)
+	private Date dataDiNascita;
 	
 	@Column(nullable = false)
 	private String luogoDiNascita;
@@ -68,19 +72,19 @@ public class Allievo {
 		this.email = email;
 	}
 
-	public String getTelefono() {
+	public int getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(String telefono) {
+	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
 
-	public String getDataDiNascita() {
+	public Date getDataDiNascita() {
 		return dataDiNascita;
 	}
 
-	public void setDataDiNascita(String dataDiNascita) {
+	public void setDataDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
 
