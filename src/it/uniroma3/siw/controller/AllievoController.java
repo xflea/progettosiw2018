@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -43,8 +44,8 @@ public class AllievoController extends HttpServlet {
 		session.setAttribute("cognomeAllievo", cognome);
 		session.setAttribute("emailAllievo", email);
 		session.setAttribute("telefonoAllievo", telefono);
-		session.setAttribute("dataAllievo", dataDiNascita);
-		session.setAttribute("luogoAllievo", luogoDiNascita);
+		session.setAttribute("dataDiNascitaAllievo", dataDiNascita);
+		session.setAttribute("luogoDiNascitaAllievo", luogoDiNascita);
 
 		if(!validator.validate(request, nome, cognome, email, telefono, dataDiNascita, luogoDiNascita)) {
 			
@@ -53,7 +54,7 @@ public class AllievoController extends HttpServlet {
 			allievo.setCognome(cognome);
 			allievo.setEmail(email);
 			allievo.setTelefono(new Integer(telefono));
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			Date date2;
 			try {
 				date2 = formatter.parse(dataDiNascita);
@@ -63,10 +64,13 @@ public class AllievoController extends HttpServlet {
 			}			
 			allievo.setLuogoDiNascita(luogoDiNascita);
 			
-			EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("azienda-unit");
 			EntityManager em = emf.createEntityManager();
 			AllievoJpaRepository repoAll = new AllievoJpaRepository(em);
 			repoAll.save(allievo);
+			
+			em.close();
+			emf.close();
 			
 			session.setAttribute("allievo", allievo);
 			request.setAttribute("successAllievo", "Allievo inserito con successo!");

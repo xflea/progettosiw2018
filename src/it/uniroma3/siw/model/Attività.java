@@ -26,8 +26,8 @@ public class Attività {
 	@Temporal (TemporalType.DATE)
 	private Date data;
 	
-	@Column(nullable = false)
-	private int orario;
+	@Temporal (TemporalType.TIME)
+	private Date orario;
 	
 	@ManyToMany(mappedBy = "attività")
 	private List<Allievo> allievo;
@@ -59,11 +59,11 @@ public class Attività {
 		this.data = data;
 	}
 
-	public int getOrario() {
+	public Date getOrario() {
 		return orario;
 	}
 
-	public void setOrario(int orario) {
+	public void setOrario(Date orario) {
 		this.orario = orario;
 	}
 

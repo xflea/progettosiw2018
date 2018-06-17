@@ -57,6 +57,9 @@ public class CentroController extends HttpServlet {
 			CentroJpaRepository repoCentro = new CentroJpaRepository(em);
 			repoCentro.save(centro);
 			
+			em.close();
+			emf.close();
+			
 			session.setAttribute("centro", centro);
 			request.setAttribute("successCentro", "Centro inserito con successo!");
 			

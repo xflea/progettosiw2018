@@ -7,7 +7,6 @@ import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -46,24 +45,28 @@ public class AttivitaController extends HttpServlet {
 			
 			Attività attivita = new Attività();
 			attivita.setNome(nome);
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");
+			SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
 			Date date2;
 			try {
-				date2 = formatter.parse(data);
+				date2 = dateFormatter.parse(data);
 				attivita.setData(date2);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}			
-			attivita.setOrario(new Integer(orario));
+			SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm");
+			Date time;
+			try {
+				time = timeFormatter.parse(orario);
+				attivita.setOrario(time);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}			
 			
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("azienda-unit");
 			EntityManager em = emf.createEntityManager();
-			
-			EntityTransaction tx = em.getTransaction();
-			tx.begin();
+
 			AttivitaJpaRepository repoAtt = new AttivitaJpaRepository(em);
 			repoAtt.save(attivita);
-			tx.commit();
 			em.close();
 			emf.close();
 			
