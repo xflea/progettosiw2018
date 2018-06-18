@@ -34,7 +34,7 @@
 		<li>
 			<div><% out.print(nome); %></div>
 			<div><% out.print(data.toString()); %></div>
-			<div><% out.print(orario); %></div>
+			<div><% out.print(orario.toString()); %></div>
 		</li>	
 		<% } %>
 	</ul>
