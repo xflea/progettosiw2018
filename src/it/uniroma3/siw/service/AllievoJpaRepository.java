@@ -75,7 +75,7 @@ public class AllievoJpaRepository implements AllievoRepository{
 		
 		try {
 			tx.begin();
-			allievi = em.createQuery("select * from allievi").getResultList();
+			allievi = em.createQuery("select * from allievo").getResultList();
 			tx.commit();
 		}
 		catch(Exception e) {

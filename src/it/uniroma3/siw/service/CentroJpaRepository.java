@@ -36,8 +36,13 @@ public class CentroJpaRepository implements CentroRepository{
 	public Centro findByPrimaryKey(Long id) {
 		return em.find(Centro.class, id);
 	}
+	
+	public Centro findByEmail(String email) {
+		return (Centro)em.createQuery("select c from centro where email=\'" + email + "\'").getSingleResult();
+	}
 
 	@Override
+	@SuppressWarnings ("unchecked")
 	public List<Centro> findAll() {
 		return em.createQuery("select * from centro").getResultList();
 	}

@@ -14,24 +14,22 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {	
-		
-		HttpSession session = request.getSession();						
+			throws ServletException, IOException {		
+						
+		HttpSession session = request.getSession();
 				
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
 		if (username.equals("admin") && password.equals("admin")) {
-			
 			session.setAttribute("username", username);
 			
-			request.getRequestDispatcher("pannelloControllo.jsp").forward(request, response);
+			response.sendRedirect("pannelloControllo.jsp");
 		}
 		else {
-			
 			session.setAttribute("errorLogin", "Accesso non consentito.");
 			
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			response.sendRedirect("login.jsp");
 		}		
 		
 	}

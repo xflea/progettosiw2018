@@ -20,65 +20,59 @@ public class AllievoValidator {
 		
 		boolean errori = false;
 		
+		if (nome == null || nome.equals("")) {
+			request.setAttribute("errNomeAllievo", "Il nome è obbligatorio.");
+			errori = true;
+		}
+		if (cognome == null || cognome.equals("")) {
+			request.setAttribute("errCognomeAllievo", "Il cognome è obbligattorio");
+			errori = true;
+		}
+		if (email == null || email.equals("")) {
+			request.setAttribute("errEmailAllievo", "L'email è obbligatoria.");
+			errori = true;
+		}
+		if (telefono == null || telefono.equals("")) {
+			request.setAttribute("errTelefonoAllievo", "Il telefono è obbligatorio.");
+			errori = true;
+		}
+		if (dataDiNascita == null || dataDiNascita.equals("")) {
+			request.setAttribute("errDataDiNascitaAllievo", "La data di nascita è obbligatoria.");
+			errori = true;
+		}
+		if (luogoDiNascita == null || luogoDiNascita.equals("")) {
+			request.setAttribute("errLuogoDiNascitaAllievo", "Il luogo di Nascita è obbligatorio.");
+			errori = true;
+		} 
+		
 		try {
 			new Integer(telefono);
 		}
 		catch(NumberFormatException exception) {
 			request.setAttribute("errTelefonoAllievo", "Il telefono deve essere un numero");
+			errori = true;
 		}
 		
-		if (!emailIisValid(email)) {
+		if (!emailIsValid(email)) {
 			request.setAttribute("errEmailAllievo", "Email non valida");
+			errori = true;
 		}
 		
-		if(emailAlreadyExists(email, false)) {
+		if(emailAlreadyExists(email)) {
 			request.setAttribute("errEmailAllievo", "L'email fornita è già stata assegnata ad un allievo");
-		}
-		
-		if (nome == null || nome.equals("")) {
-			request.setAttribute("errNomeAllievo", "Il nome è obbligatorio.");
-			errori = true;
-		}
-		else if (cognome == null || cognome.equals("")) {
-			request.setAttribute("errCognomeAllievo", "Il cognome è obbligattorio");
-			errori = true;
-		}
-		else if (email == null || email.equals("")) {
-			request.setAttribute("errEmailAllievo", "L'email è obbligatoria.");
-			errori = true;
-		}
-		else if (telefono == null || telefono.equals("")) {
-			request.setAttribute("errTelefonoAllievo", "Il telefono è obbligatorio.");
-			errori = true;
-		}
-		else if (dataDiNascita == null || dataDiNascita.equals("")) {
-			request.setAttribute("errDataDiNascitaAllievo", "La data di nascita è obbligatoria.");
-			errori = true;
-		}
-		else if (luogoDiNascita == null || luogoDiNascita.equals("")) {
-			request.setAttribute("errLuogoDiNascitaAllievo", "Il luogo di Nascita è obbligatorio.");
 			errori = true;
 		}
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");
-		Date data_convertita = null;
-		try {
-			data_convertita = formatter.parse(dataDiNascita);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		Date oggi = new Date();
-		if(data_convertita.after(oggi)) {
-			request.setAttribute("errDataDiNascitaAllievo", "Data non valida.");
+		if(!dateIsValid(dataDiNascita)) {
+			request.setAttribute("errDataDiNascitaAllievo", "Data non valida");
 			errori = true;
-		}	
+		}
 		
 		return errori;
 		
 	}
 	
-	public boolean emailIisValid(String email) {
+	public boolean emailIsValid(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
                             "[a-zA-Z0-9_+&*-]+)*@" +
                             "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
@@ -90,29 +84,32 @@ public class AllievoValidator {
         return pat.matcher(email).matches();
     }
 	
-	public boolean emailAlreadyExists(String email, boolean test) {
+	public boolean emailAlreadyExists(String email) {
 		
-		EntityManagerFactory emf;
-		EntityManager em;
-		
-		if(test)
-			emf = Persistence.createEntityManagerFactory("azienda-unit-test");
-		else
-			emf = Persistence.createEntityManagerFactory("azienda-unit");
-		
-		em = emf.createEntityManager();
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("azienda-unit");
+		EntityManager em = emf.createEntityManager();
 		
 		AllievoJpaRepository repository = new AllievoJpaRepository(em);
 		
 		Allievo allievo = repository.findByEmail(email);
 		
-		if(em!=null) em.close();
-		if(emf!=null) emf.close();
+		em.close();
+		emf.close();
 		
-		if (allievo == null)
+		return allievo != null;
+	}
+	
+	public boolean dateIsValid(String dataDiNascita) {
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date data;
+		try {
+			data = formatter.parse(dataDiNascita);
+			return data.before(formatter.parse(formatter.format(new Date()))); // NON FUNZIONA, RITORNA SEMPRE FALSE, RISOLVERE
+		} catch (ParseException e) {
 			return false;
-		else
-			return true;
+		}
+		
 	}
 
 }
