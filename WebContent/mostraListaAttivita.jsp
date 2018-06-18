@@ -28,12 +28,12 @@
 		for(int i = 0; i < attivita.size(); i++) {
 			String nome = attivita.get(i).getNome();
 			Date data = attivita.get(i).getData();
-			int orario = attivita.get(i).getOrario();
+			Date orario = attivita.get(i).getOrario();
 		%>
 		<li>
 			<div><% out.print(nome); %></div>
 			<div><% out.print(data.toString()); %></div>
-			<div><% out.print(orario); %></div>
+			<div><% out.print(orario.toString()); %></div>
 		</li>	
 		<% } %>
 	</ul>
