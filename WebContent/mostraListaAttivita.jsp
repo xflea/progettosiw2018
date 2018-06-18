@@ -3,6 +3,8 @@
     
 <%@ page import = "it.uniroma3.siw.model.Attività" %>
 <%@ page import = "java.util.List" %>
+<%@ page import = "java.util.Date" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,8 +28,8 @@
 		
 		for(int i = 0; i < attivita.size(); i++) {
 			String nome = attivita.get(i).getNome();
-			String data = attivita.get(i).getData();
-			String orario = attivita.get(i).getOrario();
+			Date data = attivita.get(i).getData();
+			int orario = attivita.get(i).getOrario();
 		%>
 		<li>
 			<div><% out.print(nome); %></div>

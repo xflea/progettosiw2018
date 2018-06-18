@@ -11,10 +11,10 @@
 	<%
 		
 	if (session.getAttribute("username") == null) {
-		response.sendRedirect("login.jsp");
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 	else {
-		response.sendRedirect("pannelloControllo.jsp");
+		request.getRequestDispatcher("pannelloControllo.jsp").forward(request, response);
 	}
 	
 	%>

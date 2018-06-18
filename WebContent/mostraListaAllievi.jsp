@@ -3,6 +3,8 @@
     
 <%@ page import = "it.uniroma3.siw.model.Allievo" %>
 <%@ page import = "java.util.List" %>
+<%@ page import = "java.util.Date" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,8 +30,8 @@
 			String nome = allievi.get(i).getNome();
 			String cognome = allievi.get(i).getCognome();
 			String email = allievi.get(i).getEmail();
-			String telefono = allievi.get(i).getTelefono();
-			String dataDiNascita = allievi.get(i).getDataDiNascita();
+			int telefono = allievi.get(i).getTelefono();
+			Date dataDiNascita = allievi.get(i).getDataDiNascita();
 			String luogoDiNascita = allievi.get(i).getLuogoDiNascita();
 		%>
 		<li>
