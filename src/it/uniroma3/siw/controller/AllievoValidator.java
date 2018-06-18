@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.regex.Pattern;
 
@@ -39,6 +41,9 @@ public class AllievoValidator {
 		if (dataDiNascita == null || dataDiNascita.equals("")) {
 			request.setAttribute("errDataDiNascitaAllievo", "La data di nascita è obbligatoria.");
 			errori = true;
+		}else if(!dateIsValid(dataDiNascita)) {
+			request.setAttribute("errDataDiNascitaAllievo", "Data non valida");
+			errori = true;
 		}
 		if (luogoDiNascita == null || luogoDiNascita.equals("")) {
 			request.setAttribute("errLuogoDiNascitaAllievo", "Il luogo di Nascita è obbligatorio.");
@@ -60,11 +65,6 @@ public class AllievoValidator {
 		
 		if(emailAlreadyExists(email)) {
 			request.setAttribute("errEmailAllievo", "L'email fornita è già stata assegnata ad un allievo");
-			errori = true;
-		}
-		
-		if(!dateIsValid(dataDiNascita)) {
-			request.setAttribute("errDataDiNascitaAllievo", "Data non valida");
 			errori = true;
 		}
 		
@@ -101,14 +101,9 @@ public class AllievoValidator {
 	
 	public boolean dateIsValid(String dataDiNascita) {
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		Date data;
-		try {
-			data = formatter.parse(dataDiNascita);
-			return data.before(formatter.parse(formatter.format(new Date()))); // NON FUNZIONA, RITORNA SEMPRE FALSE, RISOLVERE
-		} catch (ParseException e) {
-			return false;
-		}
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate date = LocalDate.parse(dataDiNascita, formatter);
+		return date.isBefore(LocalDate.now());
 		
 	}
 

@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@ page import = "it.uniroma3.siw.model.Attività" %>
-<%@ page import = "java.util.List" %>
+<%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.util.Date" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,19 +23,28 @@
 	<ul>
 		<%
 		
-		List<Attività> attivita = (List<Attività>)request.getAttribute("attivita");
+		ArrayList<Attività> attivita = (ArrayList<Attività>)request.getAttribute("attivita");
 		
-		for(int i = 0; i < attivita.size(); i++) {
-			String nome = attivita.get(i).getNome();
-			Date data = attivita.get(i).getData();
-			Date orario = attivita.get(i).getOrario();
+		if(attivita == null){
 		%>
-		<li>
-			<div><% out.print(nome); %></div>
-			<div><% out.print(data.toString()); %></div>
-			<div><% out.print(orario.toString()); %></div>
-		</li>	
-		<% } %>
+		<li><% out.print("Non è stata ancora registrata nessuna attività."); %></li>
+		<%
+		}else{
+			for(int i = 0; i < attivita.size(); i++) {
+				String nome = attivita.get(i).getNome();
+				Date data = attivita.get(i).getData();
+				Date orario = attivita.get(i).getOrario();
+			%>
+			<li>
+				<div><% out.print(nome); %></div>
+				<div><% out.print(data.toString()); %></div>
+				<div><% out.print(orario.toString()); %></div>
+			</li>	
+			<%
+			}
+		}
+		%>
+		
 	</ul>
 
 </body>

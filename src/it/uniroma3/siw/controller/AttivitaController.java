@@ -1,8 +1,10 @@
 package it.uniroma3.siw.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -45,22 +47,14 @@ public class AttivitaController extends HttpServlet {
 			
 			Attività attivita = new Attività();
 			attivita.setNome(nome);
-			SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
-			Date date2;
-			try {
-				date2 = dateFormatter.parse(data);
-				attivita.setData(date2);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}			
-			SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm");
-			Date time;
-			try {
-				time = timeFormatter.parse(orario);
-				attivita.setOrario(time);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}			
+				
+			DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate date = LocalDate.parse(data, dateFormatter);
+			attivita.setData(Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+			
+			DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+			LocalTime time = LocalTime.parse(orario, timeFormatter);
+			attivita.setOrario(Date.from(time.atDate(date).atZone(ZoneId.systemDefault()).toInstant()));
 			
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("azienda-unit");
 			EntityManager em = emf.createEntityManager();

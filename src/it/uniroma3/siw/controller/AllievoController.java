@@ -1,9 +1,10 @@
 package it.uniroma3.siw.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -54,14 +55,11 @@ public class AllievoController extends HttpServlet {
 			allievo.setCognome(cognome);
 			allievo.setEmail(email);
 			allievo.setTelefono(new Integer(telefono));
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			Date date2;
-			try {
-				date2 = formatter.parse(dataDiNascita);
-				allievo.setDataDiNascita(date2);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}			
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate date = LocalDate.parse(dataDiNascita, formatter);
+			allievo.setDataDiNascita(Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+			
 			allievo.setLuogoDiNascita(luogoDiNascita);
 			
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("azienda-unit");
