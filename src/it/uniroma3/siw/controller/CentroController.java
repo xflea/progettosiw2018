@@ -32,7 +32,7 @@ public class CentroController extends HttpServlet {
 		
 		String nome = request.getParameter("nomeCentro").toUpperCase().trim();
 		String indirizzo = request.getParameter("indirizzoCentro").toUpperCase().trim();
-		String email = request.getParameter("emailCentro").toUpperCase().trim();
+		String email = request.getParameter("emailCentro").trim();
 		String telefono = request.getParameter("telefonoCentro").trim();
 		String capienza = request.getParameter("capienzaCentro").trim();
 		

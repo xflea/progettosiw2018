@@ -3,6 +3,7 @@ package it.uniroma3.siw.service;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import it.uniroma3.siw.model.Centro;
 import it.uniroma3.siw.repository.CentroRepository;
@@ -38,7 +39,19 @@ public class CentroJpaRepository implements CentroRepository{
 	}
 	
 	public Centro findByEmail(String email) {
-		return (Centro)em.createQuery("select c from centro where email=\'" + email + "\'").getSingleResult();
+		EntityTransaction tx = em.getTransaction();
+		Centro query = null;
+		try {
+			tx.begin();
+			query = (Centro)em.createQuery("select Centro from centro where email=\'" + email + "\'").getSingleResult();
+			tx.commit();
+		}
+		catch(Exception e) {
+			tx.rollback();
+		}
+		
+		return query;
+		
 	}
 
 	@Override
