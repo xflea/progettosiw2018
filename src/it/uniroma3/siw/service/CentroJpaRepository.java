@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import it.uniroma3.siw.model.Attività;
 import it.uniroma3.siw.model.Centro;
 import it.uniroma3.siw.repository.CentroRepository;
 
@@ -56,8 +57,21 @@ public class CentroJpaRepository implements CentroRepository{
 
 	@Override
 	@SuppressWarnings ("unchecked")
-	public List<Centro> findAll() {
-		return em.createQuery("select * from centro").getResultList();
+public List<Centro> findAll() {
+		
+		EntityTransaction tx = em.getTransaction();
+		List<Centro> centri = null;
+		
+		try {
+			tx.begin();
+			centri = em.createQuery("select * from centro").getResultList();
+			tx.commit();
+		}
+		catch(Exception e) {
+			tx.rollback();
+		}
+		
+		return centri;
 	}
 
 	@Override
