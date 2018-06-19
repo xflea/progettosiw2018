@@ -82,18 +82,19 @@ public class CentroValidator {
     }
 	
 public boolean emailAlreadyExists(String email) {
-		
+			
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("azienda-unit");
 		EntityManager em = emf.createEntityManager();
 		
 		CentroJpaRepository repository = new CentroJpaRepository(em);
 		
-		Centro centro = repository.findByEmail(email);
+		Centro centro = repository.findByPrimaryKey(email);
 		
 		em.close();
 		emf.close();
 		
 		return centro != null;
+		
 	}
 
 }

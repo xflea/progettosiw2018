@@ -14,7 +14,7 @@ public class Centro {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private String email;	
 	
 	@Column(nullable = false, unique = true)
 	private String nome;
@@ -22,8 +22,6 @@ public class Centro {
 	@Column(nullable = false)
 	private String indirizzo;
 	
-	@Column(nullable = false)
-	private String email;
 	
 	@Column(nullable = false)
 	private String telefono;
@@ -34,13 +32,6 @@ public class Centro {
 	@OneToMany(mappedBy = "centro")
 	private List<Attività> attività;	
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getNome() {
 		return nome;
