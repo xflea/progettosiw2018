@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 public class Centro {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String email;	
 	
 	@Column(nullable = false, unique = true)
