@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
@@ -14,7 +16,8 @@ import javax.persistence.TemporalType;
 public class Allievo {
 	
 	@Id
-	private String email;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	
 	@Column(nullable = false)
 	private String nome;
@@ -25,6 +28,9 @@ public class Allievo {
 	@Column(nullable = false)
 	private int telefono;
 	
+	@Column(nullable = false)
+	private String email;
+	
 	@Temporal (TemporalType.DATE)
 	private Date dataDiNascita;
 	
@@ -34,6 +40,14 @@ public class Allievo {
 	@ManyToMany
 	private List<Attività> attività;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

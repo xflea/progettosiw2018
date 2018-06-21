@@ -23,7 +23,7 @@ public class CentroJpaRepository implements CentroRepository{
 			em.persist(centro);
 		}
 		else {
-			Centro controllo = findByPrimaryKey(centro.getEmail());
+			Centro controllo = findByPrimaryKey(centro.getId());
 			if (controllo == null) {
 				em.persist(centro);
 			}
@@ -35,23 +35,23 @@ public class CentroJpaRepository implements CentroRepository{
 	}
 
 	@Override
-	public Centro findByPrimaryKey(String email) {
-		return em.find(Centro.class, email);
+	public Centro findByPrimaryKey(Long id) {
+		return em.find(Centro.class, id);
 	}
 	
-	public boolean findByEmail(String email) {
+	public Centro findByEmail(String email) {
 		EntityTransaction tx = em.getTransaction();
-		Centro obj_controllo = null;
+		Centro centro = null;
 		try {
 			tx.begin();
-			obj_controllo = (Centro)em.createQuery("select Centro from centro where email=\'" + email + "\'").getSingleResult();
+			centro = (Centro)em.createNativeQuery("select Centro from centro where email='" + email + "'").getSingleResult();
 			tx.commit();
 		}
 		catch(Exception e) {
 			tx.rollback();
 		}
 		
-		return obj_controllo != null;
+		return centro;
 		
 	}
 

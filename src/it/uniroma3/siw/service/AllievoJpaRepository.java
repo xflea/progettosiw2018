@@ -29,7 +29,7 @@ public class AllievoJpaRepository implements AllievoRepository{
 				em.persist(allievo);
 			}
 			else {
-				Allievo controllo = findByEmail(allievo.getEmail());
+				Allievo controllo = findByPrimaryKey(allievo.getId());
 				if (controllo == null) {
 					em.persist(allievo);
 				}
@@ -48,14 +48,14 @@ public class AllievoJpaRepository implements AllievoRepository{
 	}
 
 	@Override
-	public Allievo findByEmail(String email) {
+	public Allievo findByPrimaryKey(Long id) {
 		
 		EntityTransaction tx = em.getTransaction();
 		Allievo found = null;
 		
 		try {
 			tx.begin();
-			found = em.find(Allievo.class, email);
+			found = em.find(Allievo.class, id);
 			tx.commit();
 		}
 		catch(Exception e) {
@@ -63,6 +63,23 @@ public class AllievoJpaRepository implements AllievoRepository{
 		}
 		
 		return found;
+		
+	}
+	
+	public Allievo findByEmail(String email) {
+		EntityTransaction tx = em.getTransaction();
+		Allievo allievo = null;
+
+		try {
+			tx.begin();
+			allievo = (Allievo)em.createNativeQuery("select Allievo from allievo where email = '" + email + "'").getSingleResult();
+			tx.commit();
+		}
+		catch(Exception e) {
+			tx.rollback();
+		}
+		
+		return allievo;
 		
 	}
 

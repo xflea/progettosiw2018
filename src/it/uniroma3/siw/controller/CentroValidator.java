@@ -88,7 +88,7 @@ public boolean emailAlreadyExists(String email) {
 		
 		CentroJpaRepository repository = new CentroJpaRepository(em);
 		
-		Centro centro = repository.findByPrimaryKey(email);
+		Centro centro = repository.findByEmail(email);
 		
 		em.close();
 		emf.close();
