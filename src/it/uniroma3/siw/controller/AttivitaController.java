@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 
 import it.uniroma3.siw.model.Attività;
 import it.uniroma3.siw.service.AttivitaJpaRepository;
+import it.uniroma3.siw.service.CentroJpaRepository;
 
 @WebServlet("/richiestaAttivita")
 public class AttivitaController extends HttpServlet {
@@ -36,14 +37,16 @@ public class AttivitaController extends HttpServlet {
 		AttivitaValidator validator = new AttivitaValidator();
 		
 		String nome = request.getParameter("nome").toUpperCase().trim();
-		String data = request.getParameter("data").toUpperCase().trim();
+		String data = request.getParameter("data").trim();
 		String orario = request.getParameter("orario").toUpperCase().trim();
+		String centro = request.getParameter("centro").trim();
 		
 		session.setAttribute("nome", nome);
 		session.setAttribute("data", data);
 		session.setAttribute("orario", orario);
+		session.setAttribute("centro", centro);
 		
-		if(!validator.validate(request, nome, data, orario)) {
+		if(!validator.validate(request, nome, data, orario, centro)) {
 			
 			Attività attivita = new Attività();
 			attivita.setNome(nome);
@@ -58,9 +61,13 @@ public class AttivitaController extends HttpServlet {
 			
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("azienda-unit");
 			EntityManager em = emf.createEntityManager();
+			
+			CentroJpaRepository repoCentro = new CentroJpaRepository(em);
+			attivita.setCentro(repoCentro.findByPrimaryKey(new Long(centro)));
 
 			AttivitaJpaRepository repoAtt = new AttivitaJpaRepository(em);
 			repoAtt.save(attivita);
+			
 			em.close();
 			emf.close();
 			

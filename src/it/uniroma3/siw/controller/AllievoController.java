@@ -54,7 +54,7 @@ public class AllievoController extends HttpServlet {
 			allievo.setNome(nome);
 			allievo.setCognome(cognome);
 			allievo.setEmail(email);
-			allievo.setTelefono(new Integer(telefono));
+			allievo.setTelefono(new Long(telefono));
 			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate date = LocalDate.parse(dataDiNascita, formatter);

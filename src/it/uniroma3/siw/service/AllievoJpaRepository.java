@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.transaction.Transactional;
 
 import it.uniroma3.siw.model.Allievo;
 import it.uniroma3.siw.repository.AllievoRepository;
@@ -104,6 +105,7 @@ public class AllievoJpaRepository implements AllievoRepository{
 	}
 
 	@Override
+	@Transactional
 	public void update(Allievo allievo) {
 		
 		EntityTransaction tx = em.getTransaction();

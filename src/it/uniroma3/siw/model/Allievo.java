@@ -26,7 +26,7 @@ public class Allievo {
 	private String cognome;
 	
 	@Column(nullable = false)
-	private int telefono;
+	private Long telefono;
 	
 	@Column(nullable = false)
 	private String email;
@@ -72,11 +72,11 @@ public class Allievo {
 		this.email = email;
 	}
 
-	public int getTelefono() {
+	public Long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
 	}
 

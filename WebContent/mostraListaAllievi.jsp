@@ -75,7 +75,7 @@
 				String nome = allievi.get(i).getNome();
 				String cognome = allievi.get(i).getCognome();
 				String email = allievi.get(i).getEmail();
-				int telefono = allievi.get(i).getTelefono();
+				Long telefono = allievi.get(i).getTelefono();
 				Date dataDiNascita = allievi.get(i).getDataDiNascita();
 				String luogoDiNascita = allievi.get(i).getLuogoDiNascita();
 		%>

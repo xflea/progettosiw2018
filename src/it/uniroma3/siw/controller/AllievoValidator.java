@@ -48,7 +48,7 @@ public class AllievoValidator {
 		} 
 		
 		try {
-			new Integer(telefono);
+			new Long(telefono);
 		}
 		catch(NumberFormatException exception) {
 			request.setAttribute("errTelefonoAllievo", "Il telefono deve essere un numero");

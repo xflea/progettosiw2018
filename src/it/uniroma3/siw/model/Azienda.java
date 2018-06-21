@@ -24,17 +24,18 @@ public class Azienda {
 	@Column(nullable = false)
 	private String indirizzo;
 	
+	@Column(nullable = false)
 	private String email;
 	
 	@Column(nullable = false)
 	private Long telefono;
 	
 	@OneToMany
-	@JoinColumn(name = "centro_id")
+	@JoinColumn(name = "azienda_id")
 	private List<Centro> centro;
 	
 	@OneToOne
-	@JoinColumn(name = "responsabile_id")
+	@JoinColumn(name = "azienda")
 	private Responsabile responsabile;
 
 	public Long getId() {

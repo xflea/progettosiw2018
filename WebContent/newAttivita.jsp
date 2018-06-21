@@ -63,7 +63,9 @@
 			<div>Data: <br/><input type="date" name="data" value="${data}"/></div>
 			<div><font color="red">${ errDataAttivita }</font></div><br/><br/>
 			<div>Orario: <br/><input type="time" name="orario" min ="1" max="24" value="${orario}"/></div>
-			<div><font color="red">${ errOrarioAttivita }</font></div>
+			<div><font color="red">${ errOrarioAttivita }</font></div><br/><br/>
+			<div>Centro (ID): <br/><input type="text" name="centro" value="${centro}"/></div>
+			<div><font color="red">${ errCentroAttivita }</font></div><br/><br/>
 			<div><font color="green">${ successAttivita}</font></div><br/><br/>
 			<div><input type="submit" class="bottone" name="sumbit" value="Invia" /></div>
 		</form>

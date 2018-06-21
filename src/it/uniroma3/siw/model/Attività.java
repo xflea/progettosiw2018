@@ -67,5 +67,13 @@ public class Attività {
 		this.orario = orario;
 	}
 
+	public Centro getCentro() {
+		return centro;
+	}
+
+	public void setCentro(Centro centro) {
+		this.centro = centro;
+	}
+
 
 }

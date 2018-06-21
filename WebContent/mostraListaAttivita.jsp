@@ -2,8 +2,10 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@ page import = "it.uniroma3.siw.model.Attività" %>
+<%@ page import = "it.uniroma3.siw.model.Centro" %>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.util.Date" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -75,11 +77,13 @@
 				String nome = attivita.get(i).getNome();
 				Date data = attivita.get(i).getData();
 				Date orario = attivita.get(i).getOrario();
+				Centro centro = attivita.get(i).getCentro();
 			%>
 			<li>
 				<div><% out.print(nome); %></div>
 				<div><% out.print(data.toString()); %></div>
 				<div><% out.print(orario.toString()); %></div>
+				<div><% out.print(centro.getId()); %></div>
 			</li>	
 			<%
 			}
