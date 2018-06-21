@@ -41,19 +41,6 @@ public class LoginController extends HttpServlet {
 			response.sendRedirect("login.jsp");
 		}
 		
-		/*
-		if (username.equals("admin") && password.equals("admin")) {
-			session.setAttribute("username", username);
-			
-			response.sendRedirect("pannelloControllo.jsp");
-		}
-		else {
-			session.setAttribute("errorLogin", "Accesso non consentito.");
-			
-			response.sendRedirect("login.jsp");
-		}
-		*/
-		
 	}
 	
 }
