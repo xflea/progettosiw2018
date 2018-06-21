@@ -83,7 +83,7 @@ public List<Centro> findAll() {
 		
 		try {
 			tx.begin();
-			centri = em.createQuery("select * from centro").getResultList();
+			centri = (List<Centro>)em.createNativeQuery("select * from centro").getResultList();
 			tx.commit();
 		}
 		catch(Exception e) {

@@ -71,7 +71,7 @@ public class AttivitaJpaRepository implements AttivitaRepository{
 		
 		try {
 			tx.begin();
-			attività = em.createQuery("select * from attività").getResultList();
+			attività = (List<Attività>)em.createNativeQuery("select * from attività").getResultList();
 			tx.commit();
 		}
 		catch(Exception e) {

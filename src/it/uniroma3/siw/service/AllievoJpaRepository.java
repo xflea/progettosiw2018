@@ -93,7 +93,7 @@ public class AllievoJpaRepository implements AllievoRepository{
 		
 		try {
 			tx.begin();
-			allievi = em.createQuery("select * from allievo").getResultList();
+			allievi = (List<Allievo>)em.createNativeQuery("select * from allievo").getResultList();
 			tx.commit();
 		}
 		catch(Exception e) {
